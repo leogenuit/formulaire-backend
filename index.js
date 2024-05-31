@@ -4,16 +4,16 @@ const cors = require("cors");
 const Mailgun = require("mailgun.js");
 const formData = require("form-data");
 
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
 const mailgun = new Mailgun(formData);
 const mg = mailgun.client({
   username: "leo genuit",
   key: process.env.API_KEY,
 });
-
-const app = express();
-
-app.use(cors());
-app.use(express.json());
 
 app.post("/send-email", async (req, res) => {
   try {
